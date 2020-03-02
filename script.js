@@ -17,7 +17,11 @@ var numerical = confirm("Do you want numbers?");
 var special = confirm("Do you want special characters?");
 
 //how long do you want the password
-var length = prompt("How many characters do you want in your password?");
+var length = prompt("How many characters do you want in your password?  Select between 8 and 128 characters.");
+
+//how to test for length?
+//length < 8 return error
+//length > 128 also error
 
 //any no answer means that these cannot be included
 //true-false?
@@ -31,7 +35,7 @@ function renderPassword () {
 
 if (lowerCase === true && upperCase === true && numerical === true && special === true) {
   $("#submit").on("click", function() {
-        for (var i = 0; i < length; i++) {
+        for (var i = 0; i <= length; i++) {
         var character = Math.floor(Math.random() * arraylength);
         password = character + password;
 //but how to get it to pick an array first to get the character from?
