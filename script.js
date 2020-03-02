@@ -27,11 +27,20 @@ var length = prompt("How many characters do you want in your password?");
 //need to eliminate what wasn't selected
 //need to check to see if anything was selected
 //for loop?
+function renderPassword () {
+
 if (lowerCase === true && upperCase === true && numerical === true && special === true) {
-    //magic happens here
+  $("#submit").on("click", function() {
+        for (var i = 0; i < length; i++) {
+        var character = Math.floor(Math.random() * arraylength);
+        password = character + password;
+//but how to get it to pick an array first to get the character from?
+    }
 
           } else if (lowerCase === false && upperCase === true && numerical === true && special === true) {
             //little less magic here
+
+            //how to eliminate array?
             
           } else if (lowerCase === true && upperCase === false && numerical === true && special === true){
             //little less magic here
@@ -76,10 +85,12 @@ if (lowerCase === true && upperCase === true && numerical === true && special ==
             //even less magic here
 
           } else (lowerCase === false && upperCase === false && numerical === false && special === false){
-            //no magic here
+            return;
 
           }
 
 
 //then need to push characters to the array
+password.push(fillin);
+        }
 //then need to post result so user can see it on web page
