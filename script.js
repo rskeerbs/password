@@ -3,25 +3,8 @@ var upperLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
 var specialChar = ["!", "@", "#", "$", "%", "^", "&", "?", "_", "-", "+", "=", "~"]
 var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
-var password = []
-
-//what do I want to do?
-//ask user questions:
-//do you want lowercase
-var lowerCase = confirm("Do you want lowercase letters?");
-//do you want uppercase
-var upperCase = confirm("Do you want uppercase letters?");
-//do you want numbers
-var numerical = confirm("Do you want numbers?");
-//do you want special characters
-var special = confirm("Do you want special characters?");
-
-//how long do you want the password
-var length = prompt("How many characters do you want in your password?  Select between 8 and 128 characters.");
-
-//how to test for length?
-//length < 8 return error
-//length > 128 also error
+var password = ""
+var master = []
 
 //any no answer means that these cannot be included
 //true-false?
@@ -31,70 +14,191 @@ var length = prompt("How many characters do you want in your password?  Select b
 //need to eliminate what wasn't selected
 //need to check to see if anything was selected
 //for loop?
-function renderPassword () {
+document.getElementById("gp").addEventListener("click", function (generatePassword) {
 
-if (lowerCase === true && upperCase === true && numerical === true && special === true) {
-  $("#submit").on("click", function() {
-        for (var i = 0; i <= length; i++) {
-        var character = Math.floor(Math.random() * arraylength);
-        password = character + password;
-//but how to get it to pick an array first to get the character from?
+  // clear password 
+  document.getElementById("generated").value = ""
+  password = ""
+
+
+  //what do I want to do?
+  //ask user questions: 
+  //do you want lowercase
+  var lowerCase = confirm("Do you want lowercase letters?");
+  //do you want uppercase
+  var upperCase = confirm("Do you want uppercase letters?");
+  //do you want numbers
+  var numerical = confirm("Do you want numbers?");
+  //do you want special characters
+  var special = confirm("Do you want special characters?");
+
+  //how long do you want the password
+  var passwordLength = prompt("How many characters do you want in your password?  Select from 8 to 128 characters.");
+  if (passwordLength < 8 || passwordLength > 128) {
+    alert("You need to enter a value from 8 to 128.  Please try again.")
+    return;
+  }
+
+  else if (lowerCase === true && upperCase === true && numerical === true && special === true) {
+    for (var i = 0; i < lowerLetters.length; i++) {
+      master.push(lowerLetters[i])
     }
+    for (var i = 0; i < upperLetters.length; i++) {
+      master.push(upperLetters[i])
+    }
+    for (var i = 0; i < specialChar.length; i++) {
+      master.push(specialChar[i])
+    }
+    for (var i = 0; i < numbers.length; i++) {
+      master.push(numbers[i])
+    }
+  }
 
-          } else if (lowerCase === false && upperCase === true && numerical === true && special === true) {
-            //little less magic here
+  else if (lowerCase === false && upperCase === true && numerical === true && special === true) {
+    for (var i = 0; i < upperLetters.length; i++) {
+      master.push(upperLetters[i])
+    }
+    for (var i = 0; i < specialChar.length; i++) {
+      master.push(specialChar[i])
+    }
+    for (var i = 0; i < numbers.length; i++) {
+      master.push(numbers[i])
+    }
+  }
 
-            //how to eliminate array?
-            
-          } else if (lowerCase === true && upperCase === false && numerical === true && special === true){
-            //little less magic here
+  else if (lowerCase === true && upperCase === false && numerical === true && special === true) {
+    for (var i = 0; i < lowerLetters.length; i++) {
+      master.push(lowerLetters[i])
+    }
+    for (var i = 0; i < specialChar.length; i++) {
+      master.push(specialChar[i])
+    }
+    for (var i = 0; i < numbers.length; i++) {
+      master.push(numbers[i])
+    }
+  }
 
-          } else if (lowerCase === true && upperCase === true && numerical === false && special === true){
-            //little less magic here
+  else if (lowerCase === true && upperCase === true && numerical === false && special === true) {
+    for (var i = 0; i < lowerLetters.length; i++) {
+      master.push(lowerLetters[i])
+    }
+    for (var i = 0; i < upperLetters.length; i++) {
+      master.push(upperLetters[i])
+    }
+    for (var i = 0; i < specialChar.length; i++) {
+      master.push(specialChar[i])
+    }
+  }
 
-          } else if (lowerCase === true && upperCase === true && numerical === true && special === false){
-            //little less magic here
+  else if (lowerCase === true && upperCase === true && numerical === true && special === false) {
+    for (var i = 0; i < lowerLetters.length; i++) {
+      master.push(lowerLetters[i])
+    }
+    for (var i = 0; i < upperLetters.length; i++) {
+      master.push(upperLetters[i])
+    }
+    for (var i = 0; i < numbers.length; i++) {
+      master.push(numbers[i])
+    }
+  }
 
-          } else if (lowerCase === true && upperCase === false && numerical === true && special === true){
-            //little less magic here
+  else if (lowerCase === false && upperCase === false && numerical === true && special === true) {
+    for (var i = 0; i < specialChar.length; i++) {
+      master.push(specialChar[i])
+    }
+    for (var i = 0; i < numbers.length; i++) {
+      master.push(numbers[i])
+    }
+  }
 
-          } else if (lowerCase === false && upperCase === false && numerical === true && special === true){
-            //little less magic here
+  else if (lowerCase === false && upperCase === true && numerical === false && special === true) {
+    for (var i = 0; i < upperLetters.length; i++) {
+      master.push(upperLetters[i])
+    }
+    for (var i = 0; i < specialChar.length; i++) {
+      master.push(specialChar[i])
+    }
+  }
 
-          } else if (lowerCase === false && upperCase === true && numerical === false && special === true){
-            //little less magic here
+  else if (lowerCase === false && upperCase === true && numerical === true && special === false) {
+    for (var i = 0; i < upperLetters.length; i++) {
+      master.push(upperLetters[i])
+    }
+    for (var i = 0; i < numbers.length; i++) {
+      master.push(numbers[i])
+    }
+  }
 
-          } else if (lowerCase === false && upperCase === true && numerical === true && special === false){
-            //little less magic here
+  else if (lowerCase === true && upperCase === false && numerical === false && special === true) {
+    for (var i = 0; i < lowerLetters.length; i++) {
+      master.push(lowerLetters[i])
+    }
+    for (var i = 0; i < specialChar.length; i++) {
+      master.push(specialChar[i])
+    }
+  }
 
-          } else if (lowerCase === true && upperCase === false && numerical === false && special === true){
-            //little less magic here
+  else if (lowerCase === true && upperCase === false && numerical === true && special === false) {
+    for (var i = 0; i < lowerLetters.length; i++) {
+      master.push(lowerLetters[i])
+    }
+    for (var i = 0; i < numbers.length; i++) {
+      master.push(numbers[i])
+    }
+  }
 
-          } else if (lowerCase === true && upperCase === false && numerical === true && special === false){
-            //little less magic here
+  else if (lowerCase === true && upperCase === true && numerical === false && special === false) {
+    for (var i = 0; i < lowerLetters.length; i++) {
+      master.push(lowerLetters[i])
+    }
+    for (var i = 0; i < upperLetters.length; i++) {
+      master.push(upperLetters[i])
+    }
+  }
 
-          } else if (lowerCase === true && upperCase === true && numerical === false && special === false){
-            //little less magic here
+  else if (lowerCase === false && upperCase === false && numerical === false && special === true) {
+    for (var i = 0; i < specialChar.length; i++) {
+      master.push(specialChar[i])
+    }
+  }
 
-          } else if (lowerCase === false && upperCase === false && numerical === false && special === true){
-            //even less magic here
+  else if (lowerCase === false && upperCase === false && numerical === true && special === false) {
+    for (var i = 0; i < numbers.length; i++) {
+      master.push(numbers[i])
+    }
+  }
 
-          } else if (lowerCase === false && upperCase === false && numerical === true && special === false){
-            //even less magic here
+  else if (lowerCase === false && upperCase === true && numerical === false && special === false) {
+    for (var i = 0; i < upperLetters.length; i++) {
+      master.push(upperLetters[i])
+    }
+  }
 
-          } else if (lowerCase === false && upperCase === true && numerical === false && special === false){
-            //even less magic here
+  else if (lowerCase === true && upperCase === false && numerical === false && special === false) {
+    for (var i = 0; i < lowerLetters.length; i++) {
+      master.push(lowerLetters[i])
+    }
+  }
 
-          } else if (lowerCase === true && upperCase === false && numerical === false && special === false){
-            //even less magic here
-
-          } else (lowerCase === false && upperCase === false && numerical === false && special === false){
-            return;
-
-          }
+  else if (lowerCase === false && upperCase === false && numerical === false && special === false) {
+    alert("You need to select at least one")
+    return;
+  }
 
 
-//then need to push characters to the array
-password.push(fillin);
-        }
-//then need to post result so user can see it on web page
+
+  //then need to push characters to the array
+  for (var i = 0; i < passwordLength; i++) {
+    var randomGenerate = Math.floor(Math.random() * master.length)
+    password = password + master[randomGenerate]
+  }
+
+  console.log("password is", password)
+
+  
+
+  //then need to post result so user can see it on web page
+ document.getElementById("generated").value = password
+
+
+});
